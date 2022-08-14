@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yioi.Mapper.StoreMapper">
+    <select id="selectstore" parameterType="com.yioi.Pojo.Store" resultType="com.yioi.Pojo.Store">
+        select store_belong,store_name,store_number,store_type,store_state,store_detail  from store_management
+        <where>
+            <if test="store_belong!=null">
+                and store_belong>#{store_belong}
+            </if>
+            <if test="store_name!=null">
+                and store_name>#{store_name}
+            </if>
+            <if test="store_number!=null">
+                and store_number>#{store_number}
+            </if>
+            <if test="store_type!=null">
+                and store_type>#{store_type}
+            </if>
+            <if test="store_state!=null">
+                and store_state>#{store_state}
+            </if>
+        </where>
+    </select>
+    <insert id="addstoreinfo" parameterType="com.yioi.Pojo.Store">
+        insert into store_management (store_belong,store_name,store_number,store_type,store_state,store_detail)
+    values (#{store_belong},#{store_name},#{store_number},#{store_type},#{store_state},#{store_detail})
+
+    </insert>
+
+    <delete id="deletestore" parameterType="String">
+        delete from store_management where store_name=#{store_name}
+    </delete>
+
+    <update id="updatestoreinfo" parameterType="String">
+        update store_management set store_belong=#{store_belong},store_name=#{store_name},store_number=#{store_number},store_type=#{store_type},store_state=#{store_state},store_detail=#{store_detail}
+        where store_number=#{store_number}
+    </update>
+</mapper>

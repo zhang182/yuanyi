@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yioi.Mapper.DepartmentMapper">
+    <select id="selectdepartment" parameterType="String" resultType="java.util.HashMap">
+        select *  from department where belong_id=#{company_name}
+    </select>
+    <insert id="adddepartment" parameterType="com.yioi.Pojo.Department">
+        insert into department (department,department_belong,belong_id,department_name,department_id,department_type,department_detail
+)
+    values (#{department},#{department_belong},#{belong_id},#{department_name},#{department_id},#{department_type},#{department_detail})
+    </insert>
+
+    <delete id="deletepartment" parameterType="String">
+        delete from department where department=#{department}
+    </delete>
+
+    <update id="updatepartment" parameterType="com.yioi.Pojo.Department">
+        update department <trim prefix="set" suffixOverrides=",">
+        <if test="department_belong!=null">department_belong=#{department_belong}</if>
+        <if test="belong_id=!null">belong_id=#{belong_id}</if>
+        <if test="department_name=!null">department_name=#{department_name}</if>
+        <if test="department_id=!null">department_id=#{department_id}</if>
+        <if test="department_type=!null">department_type=#{department _id}</if>
+        <if test="department_detail=!null">department_detail=#{department_detail}</if>
+
+
+
+    </trim>
+    </update>
+</mapper>
